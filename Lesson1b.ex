@@ -1,5 +1,5 @@
 defmodule Superman do
-    def lala do
+    def withWith do
         user = %{name: "Superman", weight: {99, :kg}}
         {:ok , {weight,:kg}} = Map.fetch(user,:weight) 
         with \
@@ -12,6 +12,18 @@ defmodule Superman do
             {:w, false} -> {:error, :wrong_weight}
         end
     end    
+
+    def withCase do
+        user = %{name: "Superma1n", weight: {107, :kg}}
+        {:ok , {weight,:kg}} = Map.fetch(user,:weight)
+        w = weight > 100
+        {w, Map.fetch(user,:weight)}
+        case {w, Map.fetch(user,:name)} do
+            {true, {:ok , "Superman" }} -> {:ok , "Superman"}
+            {false, {:ok , "Superman" }} -> {:error, :wrong_weight}
+            {_, {:ok , _ }} -> {:error, :wrong_name}
+        end
+    end
 end
 
 
